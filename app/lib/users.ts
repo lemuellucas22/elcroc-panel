@@ -1,26 +1,17 @@
 export type User = {
+  id: number
   username: string
   password: string
-  role: 'admin' | 'caixa' | 'cozinha'
-  expiresAt: number | null
-  active: boolean
+  role: 'admin' | 'user'
+  expiresAt?: number
 }
 
 export let users: User[] = [
   {
+    id: 1,
     username: 'admin',
-    password: 'admin123',
+    password: '123',
     role: 'admin',
-    expiresAt: null,
-    active: true
+    expiresAt: new Date('2026-12-31').getTime()
   }
 ]
-
-export function addUser(user: User) {
-  users.push(user)
-}
-
-export function deactivateUser(username: string) {
-  const user = users.find(u => u.username === username)
-  if (user) user.active = false
-}
