@@ -5,6 +5,14 @@ export type User = {
   role: 'admin' | 'user'
   expiresAt?: number
 }
+export function addUser(user: Omit<User, 'id'>) {
+  const newUser: User = {
+    id: users.length + 1,
+    ...user
+  }
+
+  users.push(newUser)
+}
 
 export let users: User[] = [
   {
