@@ -2,8 +2,8 @@ import { users } from '@/app/lib/users'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export default function AdminPage() {
-  const cookieStore = cookies()
+export default async function AdminPage() {
+  const cookieStore = await cookies()
   const sessionCookie = cookieStore.get('session')?.value
 
   // Se não tiver sessão, redireciona para login
