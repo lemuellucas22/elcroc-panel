@@ -1,10 +1,9 @@
-export const dynamic = 'force-dynamic'
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function LoginPage() {
+function LoginContent() {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
   const router = useRouter()
@@ -37,12 +36,27 @@ export default function LoginPage() {
         </p>
       )}
 
-      <input placeholder="Usuário" onChange={e => setUser(e.target.value)} />
+      <input
+        placeholder="Usuário"
+        onChange={e => setUser(e.target.value)}
+      />
       <br /><br />
-      <input type="password" placeholder="Senha" onChange={e => setPass(e.target.value)} />
+      <input
+        type="password"
+        placeholder="Senha"
+        onChange={e => setPass(e.target.value)}
+      />
       <br /><br />
 
       <button onClick={handleLogin}>Entrar</button>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginContent />
+    </Suspense>
   )
 }
