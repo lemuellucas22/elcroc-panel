@@ -10,12 +10,11 @@ export async function POST(req: Request) {
   }
 
   addUser({
-    username: data.username,
-    password: data.password,
-    role: data.role,
-    expiresAt: data.expiresAt,
-    active: true
-  })
+  username: data.username,
+  password: data.password,
+  role: data.role,
+  expiresAt: data.expiresAt
+})
 
   return NextResponse.json({ ok: true })
 }
