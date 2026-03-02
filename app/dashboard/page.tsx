@@ -20,3 +20,6 @@ export default async function Dashboard() {
     </div>
   )
 }
+<form action="/api/logout" method="POST">
+  <button type="submit">Sair</button>
+</form>
