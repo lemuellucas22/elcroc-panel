@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { users } from '@/app/lib/users'
+import { users, addUser } from '@/app/lib/users'
 
 export async function POST(req: Request) {
   const data = await req.json()
