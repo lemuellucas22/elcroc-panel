@@ -2,8 +2,8 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { users } from '@/app/lib/users'
 
-export default function AdminPage() {
-  const cookieStore = cookies()
+export default async function AdminPage() {
+  const cookieStore = await cookies()
   const session = cookieStore.get('session')?.value
 
   const user = users.find(u => u.username === session)
