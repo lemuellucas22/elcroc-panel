@@ -1,12 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function LoginPage() {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
   const router = useRouter()
+  const params = useSearchParams()
+
+  const expired = params.get('expired')
 
   async function handleLogin() {
     const res = await fetch('/api/auth/login', {
@@ -18,13 +21,20 @@ export default function LoginPage() {
     if (res.ok) {
       router.push('/dashboard')
     } else {
-      alert('Login inválido')
+      const data = await res.json()
+      alert(data.error)
     }
   }
 
   return (
     <div style={{ padding: 40 }}>
       <h1>Login</h1>
+
+      {expired && (
+        <p style={{ color: 'red' }}>
+          Seu acesso expirou. Fale com o administrador.
+        </p>
+      )}
 
       <input placeholder="Usuário" onChange={e => setUser(e.target.value)} />
       <br /><br />
